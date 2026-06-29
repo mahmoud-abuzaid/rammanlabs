@@ -13,6 +13,8 @@
     --btn-bg: #111827;
     --btn-text: #ffffff;
     --btn-hover: #000000;
+    --card-bg: #ffffff;
+    --glow: rgba(198, 40, 40, 0.05);
 }
 
 [data-theme="dark"] {
@@ -24,6 +26,8 @@
     --btn-bg: #ffffff;
     --btn-text: #030712;
     --btn-hover: #e5e7eb;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --glow: rgba(198, 40, 40, 0.15);
 }
 
 /* Transitions */
@@ -44,13 +48,7 @@ body {
     font-family: 'Cairo', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 5%;
+    overflow-x: hidden;
     position: relative;
     -webkit-font-smoothing: antialiased;
 }
@@ -61,7 +59,7 @@ a {
 
 /* Background Grid Pattern */
 .grid-bg {
-    position: absolute;
+    position: fixed;
     inset: 0;
     z-index: -1;
     background-image:
@@ -121,6 +119,15 @@ a {
     transform: rotate(0) scale(1);
 }
 
+/* Hero Section Wrapper */
+.hero-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5%;
+}
+
 /* Hero Section (Wide Canvas) */
 .hero {
     width: 100%;
@@ -158,16 +165,21 @@ a {
     /* الحواف الدائرية */
 }
 
-/* Status Badge - Extremely Minimal */
+/* Status Badge - Spaceship Pill */
 .status-badge {
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: var(--text-muted);
+    gap: 12px;
+    color: var(--text-color);
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
     margin-bottom: 24px;
     letter-spacing: 0.5px;
+    background: var(--card-bg);
+    border: 1px solid var(--grid-color);
+    padding: 10px 24px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 
 .pulse-dot {
@@ -221,24 +233,26 @@ p {
     font-weight: 500;
 }
 
-/* Solid Minimal Button */
+/* Solid Minimal Button - Spaceship Pill */
 .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 12px;
     background: var(--btn-bg);
     color: var(--btn-text);
-    padding: 16px 36px;
-    border-radius: 8px;
-    /* Sharp modern corners */
+    padding: 18px 40px;
+    border-radius: 50px; /* Fully rounded pill */
     font-weight: 700;
     font-size: 16px;
     cursor: pointer;
     border: 1px solid transparent;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .btn-primary:hover {
     background: var(--btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
 .btn-icon {
@@ -250,14 +264,158 @@ p {
     /* RTL */
 }
 
+/* Future Projects Section */
+.future-projects {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 5%;
+    position: relative;
+    z-index: 1;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+    color: var(--text-color);
+}
+
+.section-header p {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Bento Grid - Spaceship Style */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.project-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--grid-color);
+    border-radius: 40px; /* Massive border radius */
+    padding: 40px;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Inner Glow Effect using Pseudo-element */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at top right, var(--glow) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(198, 40, 40, 0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* Content needs z-index to sit above glow */
+.icon-wrapper, .card-text {
+    position: relative;
+    z-index: 1;
+}
+
+.icon-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 20px; /* Highly rounded icon box */
+    background: rgba(198, 40, 40, 0.08);
+    color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 32px;
+    transition: transform 0.4s ease, background 0.4s ease;
+}
+
+.project-card:hover .icon-wrapper {
+    transform: scale(1.1) rotate(-5deg);
+    background: rgba(198, 40, 40, 0.15);
+}
+
+.icon-wrapper svg {
+    width: 28px;
+    height: 28px;
+}
+
+.project-card h3 {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+}
+
+.project-card p {
+    font-size: 17px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Spaceship Asymmetrical Grid (Desktop) */
+@media (min-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 1fr;
+    }
+    
+    .card-wide {
+        grid-column: span 2;
+        display: flex;
+        flex-direction: row; /* Horizontal layout for wide card */
+        align-items: center;
+        gap: 40px;
+    }
+    
+    .card-wide .icon-wrapper {
+        margin-bottom: 0;
+        width: 80px;
+        height: 80px;
+        border-radius: 24px;
+    }
+    .card-wide .icon-wrapper svg {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .card-wide h3 {
+        font-size: 32px;
+    }
+}
+
 /* Footer */
 footer {
-    position: absolute;
-    bottom: 30px;
-    left: 0;
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 40px 0 30px;
     z-index: 1;
 }
 
