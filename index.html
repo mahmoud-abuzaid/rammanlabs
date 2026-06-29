@@ -15,14 +15,8 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-
-
-    <!-- Static Aurora Background -->
-    <div class="aurora-bg"></div>
-    <div class="aurora-overlay"></div>
-
-    <!-- Interactive Spotlight Grid -->
-    <div id="spotlight-grid"></div>
+    <!-- Premium Mesh Background -->
+    <div class="mesh-bg"></div>
 
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" id="theme-toggle" aria-label="تبديل المظهر">
@@ -30,21 +24,23 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="icon-moon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
     </button>
 
-    <main class="hero fade-in-up">
-        <div class="hero-content">
-            <!-- Eyebrow Badge (Moved to top) -->
-            <div class="status-badge" style="margin-bottom: 35px;">
+    <!-- Main Container -->
+    <div class="page-container">
+        <!-- Central Glass Card -->
+        <main class="glass-card fade-in-up">
+            <!-- Eyebrow Badge -->
+            <div class="status-badge">
                 <span class="pulse-dot"></span>
                 <span>ننطلق قريباً</span>
             </div>
 
-            <!-- Centered Logo (Now the Hero) -->
-            <div class="hero-logo">
+            <!-- The Premium Logo Badge -->
+            <div class="hero-logo-wrapper">
                 <img src="logo.png" alt="Romman Labs Logo" id="main-logo" decoding="async" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-                <h2 id="logo-fallback" style="display: none; font-size: 42px; font-weight: 900; letter-spacing: 1px; color: var(--text-color); margin: 0;">Romman<span class="text-primary">Labs</span></h2>
+                <h2 id="logo-fallback" style="display: none;">Romman<span class="text-primary">Labs</span></h2>
             </div>
 
-            <!-- Elegant, smaller heading -->
+            <!-- Fluid Typography Heading -->
             <h1>نبني اليوم <span class="text-primary">لنؤثر في الغد.</span></h1>
 
             <!-- Rotating Text Container -->
@@ -52,12 +48,11 @@
                 <span class="static-text">نطور منصات ذكية لدعم</span>
                 <span id="dynamic-text" class="dynamic-text"></span>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer class="fade-in-up delay-1">
-        <p>© 2026 رمان لابز. جميع الحقوق محفوظة.</p>
-    </footer>
-
+        <footer class="fade-in-up delay-1">
+            <p>© 2026 رمان لابز. جميع الحقوق محفوظة.</p>
+        </footer>
+    </div>
 </body>
 </html>
