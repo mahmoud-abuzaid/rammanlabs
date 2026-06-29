@@ -38,10 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const spotlightGrid = document.getElementById("spotlight-grid");
     if (spotlightGrid) {
-        // Shuffle and take about 80 words to fill the screen with more breathing room
+        // Ensure enough words to fill the entire screen (top to bottom) even with large gaps
         const shuffled = techPhrases.sort(() => 0.5 - Math.random());
-        // Duplicate the array to ensure enough words to cover the grid
-        const wordsToDisplay = [...shuffled, ...shuffled].slice(0, 80);
+        const wordsToDisplay = [...shuffled, ...shuffled, ...shuffled].slice(0, 180);
         
         wordsToDisplay.forEach(word => {
             const span = document.createElement("span");
