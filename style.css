@@ -178,18 +178,35 @@ h1 {
     font-weight: 600;
     color: var(--text-muted);
     display: flex;
-    flex-wrap: wrap; /* Allows wrapping on ultra-small screens */
+    flex-direction: column; /* Force dynamic text to a new line */
     justify-content: center;
     align-items: center;
     gap: 8px;
+    margin-top: 10px;
 }
 
 .dynamic-text {
     color: var(--primary);
     font-weight: 800;
-    border-right: 2px solid var(--primary);
-    padding-right: 5px;
+    font-size: clamp(15px, 3.5vw, 20px); /* Slightly smaller as requested */
     white-space: nowrap;
+    min-height: 30px; /* Prevent layout shift */
+}
+
+/* Blinking Cursor */
+.cursor {
+    color: #ffffff; /* Requested white */
+    font-weight: 400;
+    animation: blink 0.8s step-start infinite;
+    text-shadow: 0 0 2px rgba(0,0,0,0.2); /* Ensure visibility even in light mode */
+}
+
+[data-theme="light"] .cursor {
+    color: var(--text-color); /* Match text in light mode for readability, since pure white disappears */
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
 }
 
 /* 8. Theme Toggle */

@@ -49,10 +49,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (currentLen < fullWord.length) {
                 currentLen++;
                 dynamicText.innerHTML = fullWord.substring(0, currentLen) + "<span class='cursor'>|</span>";
-                timer = setTimeout(loopTyping, 60);
+                
+                // Realistic typing speed: random between 40ms and 120ms
+                let typingSpeed = 40 + Math.random() * 80;
+                
+                // Occasional human pause
+                if (Math.random() < 0.1) typingSpeed += 150; 
+
+                timer = setTimeout(loopTyping, typingSpeed);
             } else {
                 dynamicText.innerHTML = fullWord + "<span class='cursor'>|</span>";
-                setTimeout(deletingEffect, 2000); // Wait before deleting
+                setTimeout(deletingEffect, 2500); // Wait before deleting
             }
         };
         loopTyping();
@@ -66,11 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
             if (currentLen > 0) {
                 currentLen--;
                 dynamicText.innerHTML = fullWord.substring(0, currentLen) + "<span class='cursor'>|</span>";
-                timer = setTimeout(loopDeleting, 30);
+                
+                // Faster deleting speed but still slightly randomized
+                let deletingSpeed = 20 + Math.random() * 30;
+                
+                timer = setTimeout(loopDeleting, deletingSpeed);
             } else {
                 dynamicText.innerHTML = "<span class='cursor'>|</span>";
                 i = (i + 1) % words.length;
-                setTimeout(typingEffect, 500); // Wait before typing next
+                setTimeout(typingEffect, 800); // Wait before typing next
             }
         };
         loopDeleting();
