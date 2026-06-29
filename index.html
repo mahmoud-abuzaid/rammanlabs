@@ -31,19 +31,21 @@
     </button>
 
     <main class="hero fade-in-up">
-        <!-- Centered Logo with Fallback -->
-        <div class="hero-logo">
-            <img src="logo.png" alt="Romman Labs Logo" id="main-logo" decoding="async" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
-            <h2 id="logo-fallback" style="display: none; font-size: 32px; font-weight: 900; letter-spacing: 1px; color: var(--text-color); margin: 0;">Romman<span class="text-primary">Labs</span></h2>
-        </div>
-
         <div class="hero-content">
-            <div class="status-badge">
+            <!-- Eyebrow Badge (Moved to top) -->
+            <div class="status-badge" style="margin-bottom: 35px;">
                 <span class="pulse-dot"></span>
                 <span>ننطلق قريباً</span>
             </div>
 
-            <h1>نبني اليوم<br><span class="text-primary">لنؤثر في الغد.</span></h1>
+            <!-- Centered Logo (Now the Hero) -->
+            <div class="hero-logo">
+                <img src="logo.png" alt="Romman Labs Logo" id="main-logo" decoding="async" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                <h2 id="logo-fallback" style="display: none; font-size: 42px; font-weight: 900; letter-spacing: 1px; color: var(--text-color); margin: 0;">Romman<span class="text-primary">Labs</span></h2>
+            </div>
+
+            <!-- Elegant, smaller heading -->
+            <h1>نبني اليوم <span class="text-primary">لنؤثر في الغد.</span></h1>
 
             <!-- Rotating Text Container -->
             <div class="rotating-text-container">
