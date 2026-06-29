@@ -16,14 +16,13 @@
 </head>
 <body>
 
-    <!-- Cinematic Intro Sequence -->
-    <div id="cinematic-intro">
-        <h2 id="intro-text"></h2>
-    </div>
 
-    <!-- Cinematic Aurora Background -->
+    <!-- Static Aurora Background -->
     <div class="aurora-bg"></div>
     <div class="aurora-overlay"></div>
+
+    <!-- Interactive Spotlight Grid -->
+    <div id="spotlight-grid"></div>
 
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" id="theme-toggle" aria-label="تبديل المظهر">
@@ -32,9 +31,10 @@
     </button>
 
     <main class="hero fade-in-up">
-        <!-- Centered Logo -->
+        <!-- Centered Logo with Fallback -->
         <div class="hero-logo">
-            <img src="logo.png" alt="Romman Labs Logo" id="main-logo" />
+            <img src="logo.png" alt="Romman Labs Logo" id="main-logo" decoding="async" loading="eager" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+            <h2 id="logo-fallback" style="display: none; font-size: 32px; font-weight: 900; letter-spacing: 1px; color: var(--text-color); margin: 0;">Romman<span class="text-primary">Labs</span></h2>
         </div>
 
         <div class="hero-content">

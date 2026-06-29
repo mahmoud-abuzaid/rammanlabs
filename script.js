@@ -1,72 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Cinematic Intro Sequence
-    const introContainer = document.getElementById("cinematic-intro");
-    const introText = document.getElementById("intro-text");
-    const mainHeroElements = document.querySelectorAll(".fade-in-up");
     
-    // Pool of punchy, cinematic phrases
-    const allPhrases = [
-        "أمان مطلق.",
-        "تطور مستمر.",
-        "دعم لا محدود.",
-        "رؤية لا تتوقف.",
-        "خصوصية تامة.",
-        "حلول ذكية.",
-        "أداء استثنائي.",
-        "ثقة وموثوقية.",
-        "أفكار جريئة.",
-        "ابتكار بلا حدود.",
-        "جودة بلا مساومة.",
-        "سرعة ودقة.",
-        "مستقبل رقمي."
+    // 1. Initial fade-in animation
+    setTimeout(() => {
+        document.querySelectorAll(".fade-in-up").forEach(el => {
+            el.classList.add("visible");
+        });
+    }, 100);
+
+    // 2. Interactive Spotlight Grid (Hidden Phrases)
+    const techPhrases = [
+        "هندسة برمجية متقدمة", "حماية بيانات سيادية", "بنية تحتية سحابية", "ذكاء أعمال مستدام",
+        "تحول رقمي شامل", "أتمتة العمليات", "حلول متدرجة", "منظومات ذكية", "تحليل بيانات ضخم",
+        "أمان سيبراني مطلق", "واجهات تفاعلية", "تجربة مستخدم فائقة", "موثوقية عالية",
+        "سرعة استجابة", "خوارزميات متطورة", "تطوير مرشّد", "بوابات دفع آمنة", "تكامل أنظمة",
+        "تقنيات الجيل القادم", "ابتكار مستمر", "ذكاء اصطناعي مدمج", "حلول لوجستية ذكية",
+        "إدارة سلسلة الإمداد", "أنظمة تخطيط الموارد", "حلول مالية رقمية", "تكنولوجيا مالية",
+        "تشفير متقدم", "هندسة بيانات", "واجهات برمجة التطبيقات", "بنية لا مركزية",
+        "بلوكتشين للأعمال", "إنترنت الأشياء", "مدن ذكية", "حلول تجارة إلكترونية",
+        "منصات تداول متطورة", "تطوير تطبيقات أصلية", "استضافة سحابية آمنة", "خوادم مخصصة",
+        "إدارة هويات رقمية", "تعلم آلة مستمر", "نماذج تنبؤية", "أداء فائق السرعة",
+        "توسعية لا محدودة", "مرونة تشغيلية", "دعم فني استباقي", "مراقبة مدار الساعة",
+        "حلول تعافي من الكوارث", "تخزين سحابي لامركزي", "أدوات اتصال متقدمة", "منصات إدارة المهام",
+        "أتمتة تسويق", "إدارة علاقات عملاء", "نظم إدارة محتوى", "منصات تعليم إلكتروني",
+        "تكنولوجيا صحية ذكية", "إدارة أصول مؤسسية", "نظم تحكم ذكية", "أمن شبكات",
+        "حلول تنقل مستدامة", "أنظمة حجز متكاملة", "منصات عقارية رقمية", "تقنيات واقع معزز",
+        "واقع افتراضي للأعمال", "تصميم تجارب رقمية", "هندسة واجهات معتمدة", "تصميم واجهات بديهية",
+        "تخصيص متقدم", "تقارير تحليلية لحظية", "أدوات ذكاء تنافسي", "أنظمة كشف احتيال",
+        "توثيق ثنائي العوامل", "إدارة حقوق رقمية", "أنظمة نقاط بيع سحابية", "إدارة مخزون ذكية",
+        "تتبع أصول لحظي", "لوحات تحكم تفاعلية", "أدوات تكامل مستمر", "تطوير عمليات مؤتمتة",
+        "بنية خوادم صغرى", "تصميم بنية مرنة", "حلول استدامة رقمية", "تمكين قوى عاملة",
+        "تطوير قدرات رقمية", "مبادرات تحول وطنية", "حلول قطاع عام", "تكنولوجيا زراعية ذكية",
+        "منصات تفاوض إلكتروني", "أنظمة تعاقد ذكية", "منصات مقاولات متكاملة", "حلول دمج مجتمعي",
+        "تمكين ذوي الهمم رقمياً", "أنظمة وصول شاملة", "تقنيات مساعدة ذكية", "تصميم رقمي شامل",
+        "شراكات استراتيجية", "نمو مستدام", "كفاءة تشغيلية", "حلول مخصصة للشركات",
+        "تصميم معماري برمجي", "استشارات تحول رقمي", "إدارة مشاريع رشيقة", "تطوير منتجات رقمية"
     ];
 
-    // Shuffle array and pick 4 random phrases
-    const shuffled = allPhrases.sort(() => 0.5 - Math.random());
-    const flashWords = shuffled.slice(0, 4);
-    
-    // Add the final brand reveal
-    flashWords.push(`<span style="color: var(--primary);">Romman</span><span style="color: #ffffff;">Labs</span>`);
+    const spotlightGrid = document.getElementById("spotlight-grid");
+    if (spotlightGrid) {
+        // Shuffle and take about 80 words to fill the screen with more breathing room
+        const shuffled = techPhrases.sort(() => 0.5 - Math.random());
+        // Duplicate the array to ensure enough words to cover the grid
+        const wordsToDisplay = [...shuffled, ...shuffled].slice(0, 80);
+        
+        wordsToDisplay.forEach(word => {
+            const span = document.createElement("span");
+            span.className = "spotlight-word";
+            span.textContent = word;
+            spotlightGrid.appendChild(span);
+        });
 
-    let flashIndex = 0;
-
-    function triggerFlash() {
-        if (flashIndex < flashWords.length) {
-            introText.innerHTML = flashWords[flashIndex];
-            introText.classList.add("flash-active");
-            
-            // Duration the word stays on screen
-            setTimeout(() => {
-                introText.classList.remove("flash-active");
-                flashIndex++;
-                
-                // Delay before next word
-                let nextDelay = (flashIndex === flashWords.length - 1) ? 800 : 150; 
-                setTimeout(triggerFlash, nextDelay);
-            }, 600); 
-        } else {
-            // End of sequence: Explode into white flash and reveal site
-            setTimeout(() => {
-                introContainer.classList.add("explode-flash");
-                
-                // Reveal the main site while the flash is fading
-                setTimeout(() => {
-                    mainHeroElements.forEach(el => el.classList.add("visible"));
-                    // Start the typewriter effect
-                    setTimeout(typingEffect, 800);
-                }, 300);
-                
-                // Completely remove the intro div from DOM to prevent blocking clicks
-                setTimeout(() => {
-                    introContainer.style.display = "none";
-                }, 2000);
-
-            }, 300);
-        }
+        // Track mouse movement to update the mask gradient position
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            spotlightGrid.style.setProperty('--mouse-x', `${x}px`);
+            spotlightGrid.style.setProperty('--mouse-y', `${y}px`);
+        });
     }
-
-    // Start intro sequence
-    setTimeout(triggerFlash, 800);
 
     // 2. Theme Toggle Logic
     const themeToggleBtn = document.getElementById("theme-toggle");
@@ -138,4 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Set initial cursor state
     dynamicText.innerHTML = "<span class='cursor'>|</span>";
+    
+    // Start typing effect
+    setTimeout(typingEffect, 1200);
 });
